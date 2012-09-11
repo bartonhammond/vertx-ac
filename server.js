@@ -7,7 +7,8 @@ server.requestHandler(function(req) {
       req.response.end("Port: " + vertx.env['PORT']);
   }
 
-})
+});
+
 // Create a SockJS bridge which lets everything through (be careful!)
 vertx.createSockJSServer(server).bridge({prefix: "/eventbus"}, [{}], [{}]);
 
