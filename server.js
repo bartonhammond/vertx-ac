@@ -2,17 +2,8 @@ load('vertx.js');
 
 var server = vertx.createHttpServer();
 
-server.requestHandler(function(req) {
-
-  if (req.uri == "/port") {
-      req.response.end("Port: " + vertx.env['PORT']);
-  }
-
-});
-
-// Create a SockJS bridge which lets everything through (be careful!)
+// Create a SockJS bridge which lets everything through
 vertx.createSockJSServer(server).bridge({prefix: "/eventbus"}, [{}], [{}]);
 
-
 server.listen(vertx.env['PORT'],'0.0.0.0');
-//Good luck
+
